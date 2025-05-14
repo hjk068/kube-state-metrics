@@ -133,7 +133,7 @@ func endpointSliceMetricFamilies(allowAnnotationsList, allowLabelsList []string)
 					}
 
 					if ep.Conditions.Terminating != nil {
-						serving = strconv.FormatBool(*ep.Conditions.Terminating)
+						terminating = strconv.FormatBool(*ep.Conditions.Terminating)
 					}
 					if ep.Hostname != nil {
 						hostname = *ep.Hostname
@@ -153,7 +153,7 @@ func endpointSliceMetricFamilies(allowAnnotationsList, allowLabelsList []string)
 						endpointZone = *ep.Zone
 					}
 
-					labelKeys := []string{"ready", "serving", "hostname", "terminating", "targetref_kind", "targetref_name", "targetref_namespace", "endpoint_nodename", "endpoint_zone", "address"}
+					labelKeys := []string{"ready", "serving", "terminating", "hostname", "targetref_kind", "targetref_name", "targetref_namespace", "endpoint_nodename", "endpoint_zone", "address"}
 					labelValues := []string{ready, serving, terminating, hostname, targetrefKind, targetrefName, targetrefNamespace, endpointNodename, endpointZone}
 
 					for _, address := range ep.Addresses {
